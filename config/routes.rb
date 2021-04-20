@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   resources :passwords, controller: 'clearance/passwords', only: [:create, :new]
   resource :session, only: [:create]
-  resources :users, only: [:create] do
+  resources :users, only: [:show, :create] do
     resource :password,
       controller: 'clearance/passwords',
       only: [:edit, :update]
@@ -17,5 +17,5 @@ Rails.application.routes.draw do
   delete '/sign_out' => 'sessions#destroy', as: 'sign_out'
   get '/sign_up' => 'users#new', as: 'sign_up'
 
-  resources :shouts, only: :create
+  resources :shouts, only: [:show, :create]
 end
