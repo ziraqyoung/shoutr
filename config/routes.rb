@@ -17,5 +17,10 @@ Rails.application.routes.draw do
   delete '/sign_out' => 'sessions#destroy', as: 'sign_out'
   get '/sign_up' => 'users#new', as: 'sign_up'
 
-  resources :shouts, only: [:show, :create]
+  resources :shouts, only: [:show, :create] do
+    member do
+      post "like" => "likes#create"
+      delete "unlike" => "likes#destroy"
+    end
+  end
 end
