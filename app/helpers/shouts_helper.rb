@@ -2,8 +2,7 @@ module ShoutsHelper
   def shout_form_for(content_type)
     # url: content_type uses polymorphic url to determine correct path
     form_for(Shout.new, url: content_type.new) do |form|
-      form.hidden_field(:content_type, value: content_type) +
-        form.fields_for(:content) { |content_form| yield(content_form) } +
+      form.fields_for(:content) { |content_form| yield(content_form) } +
         form.submit('Shout!')
     end
   end
