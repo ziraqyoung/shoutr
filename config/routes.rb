@@ -23,7 +23,9 @@ Rails.application.routes.draw do
   delete '/sign_out' => 'sessions#destroy', as: 'sign_out'
   get '/sign_up' => 'users#new', as: 'sign_up'
 
-  resources :shouts, only: [:show, :create] do
+  post "text_shouts" => "shouts#create", defaults: { content_type: TextShout }
+  post "photo_shouts" => "shouts#create", defaults: {content_type: PhotoShout}
+  resources :shouts, only: [:show] do
     member do
       post "like" => "likes#create"
       delete "unlike" => "likes#destroy"
