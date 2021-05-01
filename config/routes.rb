@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   # must come after above route
   root to: 'home#show'
 
+  resource :search, only: :show # /search?search[term]
+
   resources :passwords, controller: 'clearance/passwords', only: [:create, :new]
   resource :session, only: [:create]
 
