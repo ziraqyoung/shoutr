@@ -6,8 +6,10 @@ class SearchService
   end
 
   def call
-    ShoutSearchQuery.new(term: term).to_relation
-  end
+    # Search with Searchkick
+    Shout.search term
 
-  alias results call
+    # Search without Elasticsearch
+    # ShoutSearchQuery.new(term: term).to_relation
+  end
 end
